@@ -8,7 +8,7 @@ data = read.csv("stencil_permutation.csv")
 p = ggplot(data, aes(x=size, y=throughput, group=permutation, color=permutation))+
   geom_line(size=1.3) +
   geom_point(size=3) +
-  ggtitle("Stencil permutation performances") +
+  ggtitle("Stencil permutation performances (AMD)") +
   xlab("Size X=Y=Z") + ylab("Throughput (GFlops/s)") +
   theme( legend.position="bottom",
            legend.title = element_blank(),
