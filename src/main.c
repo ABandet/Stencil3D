@@ -24,8 +24,8 @@ int main(int argc, char** argv)
   char name[64];
 
   /* Initialization */
-  a=(float *)malloc(sizeof(float)*SIZEX*SIZEY*SIZEZ);
-  b=(float *)malloc(sizeof(float)*SIZEX*SIZEY*SIZEZ);
+  a=(float *)aligned_alloc(64,sizeof(float)*SIZEX*SIZEY*SIZEZ);
+  b=(float *)aligned_alloc(64,sizeof(float)*SIZEX*SIZEY*SIZEZ);
   init_matrix(a, b, SIZEX, SIZEY, SIZEZ);
   flops = (SIZEX-2)*(SIZEY-2)*(SIZEZ-2)*14.*2.;
 

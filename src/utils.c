@@ -22,7 +22,7 @@ void init_matrix(float *a, float *b, const int size_x, const int size_y, const i
       b[i * size_y + j] = a[i * size_y + j] = 1;
 }
 
-int bench_stencil_time(void (*f)(float *, const float *), float *a, float *b, double time) {
+int bench_stencil_time(void (*f)(float *, float *), float *a, float *b, double time) {
   double start;
   int count = 0;
 
@@ -36,7 +36,7 @@ int bench_stencil_time(void (*f)(float *, const float *), float *a, float *b, do
   return count;
 }
 
-void bench_stencil_iterations(void (*f)(float *, const float *), float *a, float *b, int iterations) {
+void bench_stencil_iterations(void (*f)(float *, float *), float *a, float *b, int iterations) {
   for (int i = 0; i < iterations; i++) {
     f(a, b);
     f(b, a);

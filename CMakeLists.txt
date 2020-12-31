@@ -5,6 +5,8 @@ set(CMAKE_C_STANDARD 11)
 
 include_directories(include)
 
+SET(CMAKE_C_FLAGS  -mavx2)
+
 add_executable(Stencil
         src/main.c
         src/base.c
