@@ -20,12 +20,15 @@
 void stencil3d(float *a, float *b);
 
 // Permutations
-void stencil3d_ijk(float *a, const float *b);
-void stencil3d_ikj(float *a, const float *b);
-void stencil3d_jik(float *a, const float *b);
-void stencil3d_jki(float *a, const float *b);
+void stencil3d_ijk(float *a, float *b);
+void stencil3d_ikj(float *a, float *b);
+void stencil3d_jik(float *a, float *b);
+void stencil3d_jki(float *a, float *b);
 void stencil3d_kij(float *a, float *b);
-void stencil3d_kji(float *a, const float *b);
+void stencil3d_kji(float *a, float *b);
+
+// vecto
+void stencil3d_vecto(float *a, float *b);
 
 
 #endif //PROJET_STENCIL_H

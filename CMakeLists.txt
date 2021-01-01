@@ -1,5 +1,9 @@
-cmake_minimum_required(VERSION 3.8)
+cmake_minimum_required(VERSION 3.12)
 project(Stencil C)
+
+if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    set(MACOSX TRUE)
+endif()
 
 set(CMAKE_C_STANDARD 11)
 
@@ -11,15 +15,12 @@ add_executable(Stencil
         src/main.c
         src/base.c
         src/permutation.c
-        src/utils.c)
+        src/utils.c src/vecto.c)
 
 add_executable(Test src/original.c)
 
-find_package(OpenMP)
-if (OPENMP_FOUND)
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}")
-    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${OpenMP_EXE_LINKER_FLAGS}")
-endif ()
+find_package(OpenMP REQUIRED)
+target_link_libraries(Stencil PRIVATE OpenMP::OpenMP_C)
 
 if (SIZE)
     add_definitions(-DSIZE=${SIZE})
@@ -51,6 +52,10 @@ endif ()
 
 if (KJI)
     add_definitions(-DKJI)
+endif ()
+
+if (VECTO)
+    add_definitions(-DVECTO)
 endif ()
 
 
