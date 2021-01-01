@@ -76,3 +76,11 @@ for size in $(seq 100 100 600); do
   make -s -j2 1>/dev/null
   ./Stencil | grep summary | gawk '{print $4 }' >>$OUT_FILE
 done
+
+rm -rf *
+
+for size in $(seq 100 100 600); do
+  cmake .. -DCMAKE_BUILD_TYPE=Release -DSIZE="$size" -DTIME=$TIME >/dev/null
+  make -s -j2 1>/dev/null
+  ./Stencil | grep summary | gawk '{print $4 }' >>$OUT_FILE
+done
