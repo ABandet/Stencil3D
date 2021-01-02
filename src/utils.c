@@ -1,6 +1,9 @@
 #include "utils.h"
+#include "stencil.h"
 #include <time.h>
 #include <omp.h>
+#include <stdio.h>
+
 
 double compute_throughput(const double time, const long long flops) {
   double seconds = time;
@@ -41,4 +44,28 @@ void bench_stencil_iterations(void (*f)(float *, float *), float *a, float *b, i
     f(a, b);
     f(b, a);
   }
+}
+
+int same_matrix(float *m1, float *m2, int size) {
+    for (int i = 0; i < size; i++){
+        if (m1[i] >= m2[i]+0.1 || m1[i] <= m2[i]-0.1) {
+            printf("Wrong value at %d (%f, %f)\n", i, m1[i], m2[i]);
+            return 0;
+        }
+    }
+
+    return 1;
+}
+
+int test_function(void (*f)(float *, float *)) {
+    float *a, *b, *aa, *bb;
+    a = (float *) malloc(sizeof(float) * SIZEX * SIZEY * SIZEZ);
+    b = (float *) malloc(sizeof(float) * SIZEX * SIZEY * SIZEZ);
+    aa = (float *) malloc(sizeof(float) * SIZEX * SIZEY * SIZEZ);
+    bb = (float *) malloc(sizeof(float) * SIZEX * SIZEY * SIZEZ);
+    init_matrix(a, b, SIZEX, SIZEY, SIZEZ);
+    init_matrix(aa, bb, SIZEX, SIZEY, SIZEZ);
+    f(a,b);
+    stencil3d(aa,bb);
+    return same_matrix(a, aa, SIZEX*SIZEY*SIZEZ);
 }

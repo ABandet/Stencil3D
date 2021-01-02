@@ -1,4 +1,4 @@
-setwd("/home/alexis/Dev/Barthou/Projet/data")
+setwd("/Users/alexis/Project/Stencil3D/data")
 library(ggplot2)
 library("reshape2")
 
@@ -19,3 +19,4 @@ p = ggplot(data, aes(x=size, y=throughput, group=permutation, color=permutation)
 
 p
 ggsave(plot = p, filename = "permutation.png")
+

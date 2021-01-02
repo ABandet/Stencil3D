@@ -15,7 +15,7 @@ add_executable(Stencil
         src/main.c
         src/base.c
         src/permutation.c
-        src/utils.c src/vecto.c)
+        src/utils.c src/vecto.c src/blocks.c)
 
 add_executable(Test src/original.c)
 
@@ -57,5 +57,7 @@ endif ()
 if (VECTO)
     add_definitions(-DVECTO)
 endif ()
+
+
 
 

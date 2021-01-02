@@ -21,6 +21,7 @@ int main(int argc, char **argv) {
     int it;
     long long flops;
     char name[64];
+    int check=-1;
 
     /* Initialization */
     a = (float *) malloc(sizeof(float) * SIZEX * SIZEY * SIZEZ);
@@ -46,21 +47,27 @@ int main(int argc, char **argv) {
 #elif KIJ
     strcpy(name, "kij");
     it = bench_stencil_time(stencil3d_kij, a, b, TIME);
+    check = test_function(stencil3d_kij);
 #elif KJI
     strcpy(name, "kji");
     it = bench_stencil_time(stencil3d_kji, a, b, TIME);
 #elif VECTO
     strcpy(name, "vecto");
     it = bench_stencil_time(stencil3d_vecto, a, b, TIME);
+    //check = test_function(stencil3d_vecto);
 #else
     strcpy(name, "original");
-    it = bench_stencil_time(stencil3d_original, a, b, TIME);
+    it = bench_stencil_time(stencil3d_block, a, b, TIME);
+    check = test_function(stencil3d_block);
 #endif
 
     cputime = omp_get_wtime() - start;
 
+
+
     flops *= it;
 
+    printf("# Test : %d\n", check);
     printf("# size : %d * %d * %d\n", SIZEX, SIZEY, SIZEZ);
     printf("# iterations : %d\n", it);
     printf("# flops : %lld\n", flops);

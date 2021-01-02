@@ -4,7 +4,7 @@ mkdir ../build
 
 OUT_FILE="../data/stencil_permutation.csv"
 TMP_FILE="/tmp/stencil.log"
-TIME="30"
+TIME="10"
 
 echo "permutation,size,time,throughput,iter,flops" >$OUT_FILE
 

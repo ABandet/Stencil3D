@@ -30,5 +30,8 @@ void stencil3d_kji(float *a, float *b);
 // vecto
 void stencil3d_vecto(float *a, float *b);
 
+// block
+void stencil3d_block(float *a, float *b);
+
 
 #endif //PROJET_STENCIL_H
