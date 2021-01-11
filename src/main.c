@@ -55,10 +55,13 @@ int main(int argc, char **argv) {
     strcpy(name, "vecto");
     it = bench_stencil_time(stencil3d_vecto, a, b, TIME);
     //check = test_function(stencil3d_vecto);
-#else
-    strcpy(name, "original");
+#elif BLOCKS
+    strcpy(name, "blocked");
     it = bench_stencil_time(stencil3d_block, a, b, TIME);
-    check = test_function(stencil3d_block);
+    //check = test_function(stencil3d_block);
+#else
+  strcpy(name, "original");
+  it = bench_stencil_time(stencil3d, a, b, TIME);
 #endif
 
     cputime = omp_get_wtime() - start;

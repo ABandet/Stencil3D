@@ -10,7 +10,7 @@ void stencil3d_block(float *a, float *b) {
     int ii, jj, kk;
     float *aa, *bb;
     const int sizezx = SIZEZ * SIZEX;
-#pragma omp parallel for collapse(3) private(i,j,k,ii,jj,kk, aa, bb) schedule(dynamic) default(shared)
+//#pragma omp parallel for collapse(3) private(i,j,k,ii,jj,kk, aa, bb) schedule(dynamic) default(shared)
     for (k = 1; k < SIZEZ - 1 - BSIZE; k += BSIZE)
             for (j = 1; j < SIZEY - 1 - BSIZE; j += BSIZE)
         for (i = 1; i < SIZEX - 1 - BSIZE; i += BSIZE)
